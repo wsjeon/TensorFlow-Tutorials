@@ -1,8 +1,11 @@
 # 이미지 처리 분야에서 가장 유명한 신경망 모델인 CNN 을 이용하여 더 높은 인식률을 만들어봅니다.
 import tensorflow as tf
-
+import time
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("./mnist/data/", one_hot=True)
+
+# 시간 측정
+start_time = time.time()
 
 #########
 # 신경망 모델 구성
@@ -91,3 +94,8 @@ print('정확도:', sess.run(accuracy,
                         feed_dict={X: mnist.test.images.reshape(-1, 28, 28, 1),
                                    Y: mnist.test.labels,
                                    keep_prob: 1}))
+
+# 시간 측정
+end_time = time.time()
+
+print('걸린시간: {}'.format(end_time-start_time))
